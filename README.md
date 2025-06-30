@@ -1,1 +1,1 @@
-Simulation codes for paper `Two-Phase Design for Biomarker Studies when Disease Processes are under Intermittent Observation`.
+Simulation codes for paper `Two-Phase Designs for Biomarker Studies when Disease Processes are under Intermittent Observation`.
