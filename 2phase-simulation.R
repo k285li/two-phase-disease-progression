@@ -1,5 +1,4 @@
-
-cores.num <- 100
+cores.num <- 1
 source("share.func.R")
 
 
@@ -12,6 +11,8 @@ for (nsample2 in c(300, 600)) {
           sim.likeli.dir.f(selectR="SRS", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.likeli.dir.f(selectR="BAL", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.likeli.dir.f(selectR="OPT", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
+          sim.likeli.dir.f(selectR="IPW.OPT.TRUE6", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
+          sim.likeli.dir.f(selectR="IPW.OPT", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
         }
       }
     }
@@ -28,7 +29,7 @@ for (nsample2 in c(300, 600)) {
           sim.ipw.f(selectR="SRS", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.ipw.f(selectR="BAL", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.ipw.f(selectR="IPW.OPT.TRUE6", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
-          
+          sim.ipw.f(selectR="IPW.OPT", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
         }
       }
     }
@@ -46,6 +47,7 @@ for (nsample2 in c(300, 600)) {
           sim.conlikeli.dir.f(selectR="SRS", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.conlikeli.dir.f(selectR="BAL", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.conlikeli.dir.f(selectR="IPW.OPT.TRUE6", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
+          sim.conlikeli.dir.f(selectR="IPW.OPT", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
         }
       }
     }
