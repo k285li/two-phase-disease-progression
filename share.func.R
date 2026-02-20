@@ -1518,3 +1518,53 @@ sim.ipw.f <- function(selectR, sim.num, nsample, nsample2, r, p.z, beta1, beta2,
 }
 
 
+
+                           
+summary.all.ESE.f <- function(nsample, nsample2,  r=1.1, p.z, beta1, beta2, gamma1, p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4){
+  # ML
+  sim.SRS_ML <- read.table(paste("results/LIK/", "LIK_DIR_SRS_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                 "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.BAL_ML <- read.table(paste("results/LIK/", "LIK_DIR_BAL_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                 "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.OPT_ML <- read.table(paste("results/LIK/", "LIK_DIR_OPT_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                 "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.true_ML <- read.table(paste("results/LIK/", "LIK_DIR_IPW.OPT.TRUE6_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                         "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.frac_ML <- read.table(paste("results/LIK/", "LIK_DIR_IPW.OPT_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                         "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  
+  # CML
+  sim.SRS_CML <- read.table(paste("results/CONLIK/", "CONLIK_DIR_SRS_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                  "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.BAL_CML <- read.table(paste("results/CONLIK/", "CONLIK_DIR_BAL_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                  "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.true_CML <- read.table(paste("results/CONLIK/", "CONLIK_DIR_IPW.OPT.TRUE6_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                          "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.frac_CML <- read.table(paste("results/CONLIK/", "CONLIK_DIR_IPW.OPT_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                          "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  
+  # IPW
+  sim.SRS_IPW <- read.table(paste("results/IPW/", "IPW_SRS_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                  "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.BAL_IPW <- read.table(paste("results/IPW/", "IPW_BAL_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                  "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.true_IPW <- read.table(paste("results/IPW/", "IPW_IPW.OPT.TRUE6_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                          "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  sim.IPWOPT.frac_IPW <- read.table(paste("results/IPW/", "IPW_IPW.OPT_", "NN", nsample, "_n",  nsample2, "_pz", p.z, "_r", r , "_beta1_", round(beta1, 2), "_beta2_", round(beta2, 2),
+                                          "_gamma1_", round(gamma1, 2), "_PX11_", p.x1.1, "_PX21_", p.x2.1,  ".dat", sep=""), header=TRUE)
+  
+  cat(p.x1.1," & ", round(beta1,2), " & ", 
+      format(round(sd(sim.SRS_ML$beta1), 3), nsmall=3), " & ", format(round(sd(sim.BAL_ML$beta1), 3), nsmall=3), " & ", 
+      format(round(sd(sim.IPWOPT.true_ML$beta1), 3), nsmall=3)," & ", format(round(sd(sim.IPWOPT.frac_ML$beta1), 3), nsmall=3), " & ", format(round(sd(sim.OPT_ML$beta1), 3), nsmall=3), " && ",
+      
+      format(round(sd(sim.SRS_CML$beta1), 3), nsmall=3), " & ", format(round(sd(sim.BAL_CML$beta1), 3), nsmall=3), " & ", 
+      format(round(sd(sim.IPWOPT.true_CML$beta1), 3), nsmall=3),  " & ", format(round(sd(sim.IPWOPT.frac_CML$beta1), 3), nsmall=3), " && ",
+      
+      format(round(sd(sim.SRS_IPW$beta1), 3), nsmall=3), " & ", format(round(sd(sim.BAL_IPW$beta1), 3), nsmall=3), " & ", 
+      format(round(sd(sim.IPWOPT.true_IPW$beta1), 3), nsmall=3), " & ", format(round(sd(sim.IPWOPT.frac_IPW$beta1), 3), nsmall=3),
+      "\\\\ ", "\n", sep="", append=TRUE, file=file.out)
+  
+  return()
+}
+
+
