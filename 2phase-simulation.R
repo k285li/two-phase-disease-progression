@@ -1,4 +1,4 @@
-cores.num <- 1
+cores.num <- 1 # increase the number of computing cores if possible 
 source("share.func.R")
 
 
@@ -48,6 +48,23 @@ for (nsample2 in c(300, 600)) {
           sim.conlikeli.dir.f(selectR="BAL", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.conlikeli.dir.f(selectR="IPW.OPT.TRUE6", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
           sim.conlikeli.dir.f(selectR="IPW.OPT", sim.num=1000, nsample=2000, nsample2=nsample2, r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
+        }
+      }
+    }
+  }
+}
+
+
+# summary of all methods regarding empirical standard errors
+file.out <- "summary.all.ESE.out"
+if ( file.exists(as.character(file.out)) ) { unlink(as.character(file.out)) }
+
+for (nsample2 in c(300, 600)) { 
+  for (p.z in c(0.4, 0.8)) {
+    for (p.x1.1 in c(0.2, 0.5)) {
+      for (gamma1 in c(log(2))) { 
+        for (beta1 in c(0, log(1.25), log(2))) {
+          summary.all.ESE.f(nsample=2000, nsample2=nsample2,  r=1.1, p.z=p.z, beta1=beta1, beta2=log(2), gamma1=gamma1, p.x1.1=p.x1.1, p.x2.1=0.5, inA=1, lam.ina=4)
         }
       }
     }
